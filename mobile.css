@@ -1,0 +1,223 @@
+/* Add these to your existing CSS file */
+
+/* Mobile Menu */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    height: 100%;
+    background: var(--secondary);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--dark);
+    border-bottom: 1px solid var(--gray-dark);
+}
+
+.mobile-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.mobile-profile span {
+    font-weight: 500;
+    color: var(--light);
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-menu-close:hover {
+    color: var(--primary);
+}
+
+.mobile-menu-list {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+.mobile-menu-item {
+    padding: 0;
+}
+
+.mobile-menu-item a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 1rem 1.5rem;
+    color: var(--light);
+    text-decoration: none;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.mobile-menu-item.active a {
+    background: rgba(229, 9, 20, 0.1);
+    border-left-color: var(--primary);
+    color: var(--primary);
+}
+
+.mobile-menu-item a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 2rem;
+}
+
+.mobile-menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+.mobile-menu-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--gray-dark);
+    margin-top: auto;
+}
+
+.mobile-search {
+    display: flex;
+    gap: 10px;
+}
+
+.mobile-search-input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid var(--gray-dark);
+    border-radius: 4px;
+    background: var(--dark);
+    color: var(--light);
+}
+
+.mobile-search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.mobile-search-btn {
+    padding: 0.8rem 1.2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-search-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Hide desktop elements on mobile */
+@media (max-width: 768px) {
+    .menu-container,
+    .nav-right {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .navbar {
+        padding: 1rem;
+    }
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.menu-toggle:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* Animation for menu items */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu-item {
+    animation: slideIn 0.3s ease forwards;
+    opacity: 0;
+}
+
+.mobile-menu-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-item:nth-child(2) { animation-delay: 0.15s; }
+.mobile-menu-item:nth-child(3) { animation-delay: 0.2s; }
+.mobile-menu-item:nth-child(4) { animation-delay: 0.25s; }
+.mobile-menu-item:nth-child(5) { animation-delay: 0.3s; }
+.mobile-menu-item:nth-child(6) { animation-delay: 0.35s; }
+.mobile-menu-item:nth-child(7) { animation-delay: 0.4s; }
+.mobile-menu-item:nth-child(8) { animation-delay: 0.45s; }
+.mobile-menu-item:nth-child(9) { animation-delay: 0.5s; }
+
+/* Disable body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
