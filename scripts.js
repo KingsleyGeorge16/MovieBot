@@ -475,6 +475,339 @@
 
 // Mobile Menu Elements
 
+// const menuToggle = document.querySelector('.menu-toggle');
+// const mobileMenu = document.querySelector('.mobile-menu');
+// const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+// const mobileMenuClose = document.querySelector('.mobile-menu-close');
+// const mobileMenuItems = document.querySelectorAll('.mobile-menu-item a');
+// const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+// const mobileSearchInput = document.querySelector('.mobile-search-input');
+
+// // Initialize mobile menu event listeners
+// function initMobileMenu() {
+//     // Toggle mobile menu
+//     menuToggle.addEventListener('click', toggleMobileMenu);
+    
+//     // Close mobile menu
+//     mobileMenuClose.addEventListener('click', closeMobileMenu);
+//     mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    
+//     // Close menu when clicking on menu items
+//     mobileMenuItems.forEach(item => {
+//         item.addEventListener('click', () => {
+//             closeMobileMenu();
+//             // Update active state
+//             updateActiveMenuItem(item);
+//         });
+//     });
+    
+//     // Mobile search functionality
+//     mobileSearchBtn.addEventListener('click', () => {
+//         const searchTerm = mobileSearchInput.value.trim();
+//         if (searchTerm) {
+//             performSearch(searchTerm);
+//             closeMobileMenu();
+//             mobileSearchInput.value = '';
+//         }
+//     });
+    
+//     mobileSearchInput.addEventListener('keypress', (e) => {
+//         if (e.key === 'Enter') {
+//             const searchTerm = mobileSearchInput.value.trim();
+//             if (searchTerm) {
+//                 performSearch(searchTerm);
+//                 closeMobileMenu();
+//                 mobileSearchInput.value = '';
+//             }
+//         }
+//     });
+    
+//     // Close menu with Escape key
+//     document.addEventListener('keydown', (e) => {
+//         if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+//             closeMobileMenu();
+//         }
+//     });
+// }
+
+// // Toggle Mobile Menu
+// function toggleMobileMenu() {
+//     mobileMenu.classList.toggle('active');
+//     mobileMenuOverlay.classList.toggle('active');
+//     document.body.classList.toggle('menu-open');
+    
+//     // Update hamburger icon
+//     const icon = menuToggle.querySelector('i');
+//     if (mobileMenu.classList.contains('active')) {
+//         icon.classList.remove('fa-bars');
+//         icon.classList.add('fa-times');
+//     } else {
+//         icon.classList.remove('fa-times');
+//         icon.classList.add('fa-bars');
+//     }
+// }
+
+// // Close Mobile Menu
+// function closeMobileMenu() {
+//     mobileMenu.classList.remove('active');
+//     mobileMenuOverlay.classList.remove('active');
+//     document.body.classList.remove('menu-open');
+    
+//     // Reset hamburger icon
+//     const icon = menuToggle.querySelector('i');
+//     icon.classList.remove('fa-times');
+//     icon.classList.add('fa-bars');
+// }
+
+// // Update active menu item
+// function updateActiveMenuItem(clickedItem) {
+//     // Remove active class from all menu items
+//     mobileMenuItems.forEach(item => {
+//         item.parentElement.classList.remove('active');
+//     });
+    
+//     // Add active class to clicked item
+//     clickedItem.parentElement.classList.add('active');
+    
+//     // Also update desktop menu items
+//     const desktopMenuItems = document.querySelectorAll('.menu-list-item a');
+//     desktopMenuItems.forEach(item => {
+//         item.parentElement.classList.remove('active');
+//         if (item.textContent.includes(clickedItem.textContent.trim())) {
+//             item.parentElement.classList.add('active');
+//         }
+//     });
+// }
+
+// // Mobile search function
+// function performSearch(searchTerm) {
+//     const movieCards = document.querySelectorAll('.movie-card');
+//     let foundResults = false;
+    
+//     movieCards.forEach(card => {
+//         const title = card.querySelector('.movie-title').textContent.toLowerCase();
+//         const desc = card.querySelector('.movie-desc').textContent.toLowerCase();
+        
+//         if (title.includes(searchTerm.toLowerCase()) || desc.includes(searchTerm.toLowerCase())) {
+//             card.style.display = 'block';
+//             foundResults = true;
+            
+//             // Scroll to the first result
+//             if (!foundResults) {
+//                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//             }
+//         } else {
+//             card.style.display = 'none';
+//         }
+//     });
+    
+//     // Show notification if no results found
+//     if (!foundResults) {
+//         showNotification(`No results found for "${searchTerm}"`);
+//     } else {
+//         showNotification(`Search results for "${searchTerm}"`);
+//     }
+// }
+
+// // Initialize everything
+// document.addEventListener('DOMContentLoaded', () => {
+//     // ... your existing initialization code ...
+    
+//     // Add this line to initialize mobile menu
+//     initMobileMenu();
+// });
+
+// // Close mobile menu on window resize (if resizing to desktop)
+// window.addEventListener('resize', () => {
+//     if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+//         closeMobileMenu();
+//     }
+// });
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Get all elements
+//     const searchBtn = document.querySelector('.search-btn');
+//     const searchBox = document.querySelector('.search-box');
+//     const searchInput = document.querySelector('.search-input');
+//     const searchClose = document.querySelector('.search-close');
+//     const profileToggle = document.querySelector('.profile');
+//     const profileDropdown = document.querySelector('.profile-dropdown');
+    
+//     // Flag to track if we're clicking inside search box
+//     let isClickingInsideSearch = false;
+    
+//     // 1. SEARCH FUNCTIONALITY
+//     // Toggle search box when clicking search button
+//     searchBtn.addEventListener('click', function(e) {
+//         e.stopPropagation();
+        
+//         // If search box is already open, just focus on input
+//         if (searchBox.classList.contains('active')) {
+//             searchInput.focus();
+//         } else {
+//             // Open search box
+//             searchBox.classList.add('active');
+//             // Close profile dropdown if open
+//             profileDropdown.classList.remove('active');
+//             profileToggle.classList.remove('active');
+//             // Focus on input after a small delay
+//             setTimeout(() => {
+//                 searchInput.focus();
+//             }, 100);
+//         }
+//     });
+    
+//     // Close search box when clicking X
+//     searchClose.addEventListener('click', function(e) {
+//         e.stopPropagation();
+//         searchBox.classList.remove('active');
+//         searchInput.value = '';
+//         // Show all movies again
+//         showAllMovies();
+//     });
+    
+//     // Track clicks inside search box
+//     searchBox.addEventListener('mousedown', function() {
+//         isClickingInsideSearch = true;
+//     });
+    
+//     // 2. PROFILE DROPDOWN FUNCTIONALITY
+//     // Toggle profile dropdown
+//     profileToggle.addEventListener('click', function(e) {
+//         e.stopPropagation();
+        
+//         // Toggle dropdown
+//         profileDropdown.classList.toggle('active');
+//         profileToggle.classList.toggle('active');
+        
+//         // Close search box if open
+//         if (searchBox.classList.contains('active')) {
+//             searchBox.classList.remove('active');
+//             searchInput.value = '';
+//             showAllMovies();
+//         }
+//     });
+    
+//     // Close profile dropdown when clicking on a link
+//     profileDropdown.querySelectorAll('a').forEach(link => {
+//         link.addEventListener('click', function() {
+//             profileDropdown.classList.remove('active');
+//             profileToggle.classList.remove('active');
+//         });
+//     });
+    
+//     // 3. CLICK OUTSIDE FUNCTIONALITY
+//     document.addEventListener('click', function(e) {
+//         // Reset the flag
+//         isClickingInsideSearch = false;
+        
+//         // Check if click is inside search elements
+//         const isClickInSearch = searchBox.contains(e.target) || searchBtn.contains(e.target);
+        
+//         // Check if click is inside profile elements
+//         const isClickInProfile = profileDropdown.contains(e.target) || profileToggle.contains(e.target);
+        
+//         // Close search box if clicking outside
+//         if (!isClickInSearch && searchBox.classList.contains('active')) {
+//             // Small delay to allow clicking on search results
+//             setTimeout(() => {
+//                 if (!isClickingInsideSearch) {
+//                     searchBox.classList.remove('active');
+//                     searchInput.value = '';
+//                     showAllMovies();
+//                 }
+//             }, 10);
+//         }
+        
+//         // Close profile dropdown if clicking outside
+//         if (!isClickInProfile && profileDropdown.classList.contains('active')) {
+//             profileDropdown.classList.remove('active');
+//             profileToggle.classList.remove('active');
+//         }
+//     });
+    
+//     // 4. SEARCH FUNCTIONALITY
+//     let searchTimeout;
+//     searchInput.addEventListener('input', function(e) {
+//         clearTimeout(searchTimeout);
+        
+//         searchTimeout = setTimeout(() => {
+//             const searchTerm = e.target.value.trim().toLowerCase();
+            
+//             if (searchTerm === '') {
+//                 showAllMovies();
+//                 return;
+//             }
+            
+//             searchMovies(searchTerm);
+//         }, 300);
+//     });
+    
+//     // 5. KEYBOARD SHORTCUTS
+//     document.addEventListener('keydown', function(e) {
+//         // Close with Escape key
+//         if (e.key === 'Escape') {
+//             if (searchBox.classList.contains('active')) {
+//                 searchBox.classList.remove('active');
+//                 searchInput.value = '';
+//                 showAllMovies();
+//             }
+//             if (profileDropdown.classList.contains('active')) {
+//                 profileDropdown.classList.remove('active');
+//                 profileToggle.classList.remove('active');
+//             }
+//         }
+        
+//         // Focus search with Ctrl+K or Cmd+K
+//         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+//             e.preventDefault();
+//             searchBox.classList.add('active');
+//             searchInput.focus();
+//             // Close profile dropdown if open
+//             profileDropdown.classList.remove('active');
+//             profileToggle.classList.remove('active');
+//         }
+//     });
+    
+//     // Helper function to search movies
+//     function searchMovies(searchTerm) {
+//         const movieCards = document.querySelectorAll('.movie-card');
+//         let foundResults = false;
+        
+//         movieCards.forEach(card => {
+//             const title = card.querySelector('.movie-title').textContent.toLowerCase();
+//             const desc = card.querySelector('.movie-desc').textContent.toLowerCase();
+            
+//             if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+//                 card.style.display = 'block';
+//                 foundResults = true;
+//             } else {
+//                 card.style.display = 'none';
+//             }
+//         });
+        
+//         // Optional: Show message if no results
+//         if (!foundResults) {
+//             console.log(`No results found for "${searchTerm}"`);
+//         }
+//     }
+    
+//     // Helper function to show all movies
+//     function showAllMovies() {
+//         const movieCards = document.querySelectorAll('.movie-card');
+//         movieCards.forEach(card => {
+//             card.style.display = 'block';
+//         });
+//     }
+// });
+
+
+
+
+// Add these functions to your existing script.js file
+
+// Mobile Menu Elements
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
@@ -621,183 +954,5 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
         closeMobileMenu();
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Get all elements
-    const searchBtn = document.querySelector('.search-btn');
-    const searchBox = document.querySelector('.search-box');
-    const searchInput = document.querySelector('.search-input');
-    const searchClose = document.querySelector('.search-close');
-    const profileToggle = document.querySelector('.profile');
-    const profileDropdown = document.querySelector('.profile-dropdown');
-    
-    // Flag to track if we're clicking inside search box
-    let isClickingInsideSearch = false;
-    
-    // 1. SEARCH FUNCTIONALITY
-    // Toggle search box when clicking search button
-    searchBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        
-        // If search box is already open, just focus on input
-        if (searchBox.classList.contains('active')) {
-            searchInput.focus();
-        } else {
-            // Open search box
-            searchBox.classList.add('active');
-            // Close profile dropdown if open
-            profileDropdown.classList.remove('active');
-            profileToggle.classList.remove('active');
-            // Focus on input after a small delay
-            setTimeout(() => {
-                searchInput.focus();
-            }, 100);
-        }
-    });
-    
-    // Close search box when clicking X
-    searchClose.addEventListener('click', function(e) {
-        e.stopPropagation();
-        searchBox.classList.remove('active');
-        searchInput.value = '';
-        // Show all movies again
-        showAllMovies();
-    });
-    
-    // Track clicks inside search box
-    searchBox.addEventListener('mousedown', function() {
-        isClickingInsideSearch = true;
-    });
-    
-    // 2. PROFILE DROPDOWN FUNCTIONALITY
-    // Toggle profile dropdown
-    profileToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        
-        // Toggle dropdown
-        profileDropdown.classList.toggle('active');
-        profileToggle.classList.toggle('active');
-        
-        // Close search box if open
-        if (searchBox.classList.contains('active')) {
-            searchBox.classList.remove('active');
-            searchInput.value = '';
-            showAllMovies();
-        }
-    });
-    
-    // Close profile dropdown when clicking on a link
-    profileDropdown.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
-            profileDropdown.classList.remove('active');
-            profileToggle.classList.remove('active');
-        });
-    });
-    
-    // 3. CLICK OUTSIDE FUNCTIONALITY
-    document.addEventListener('click', function(e) {
-        // Reset the flag
-        isClickingInsideSearch = false;
-        
-        // Check if click is inside search elements
-        const isClickInSearch = searchBox.contains(e.target) || searchBtn.contains(e.target);
-        
-        // Check if click is inside profile elements
-        const isClickInProfile = profileDropdown.contains(e.target) || profileToggle.contains(e.target);
-        
-        // Close search box if clicking outside
-        if (!isClickInSearch && searchBox.classList.contains('active')) {
-            // Small delay to allow clicking on search results
-            setTimeout(() => {
-                if (!isClickingInsideSearch) {
-                    searchBox.classList.remove('active');
-                    searchInput.value = '';
-                    showAllMovies();
-                }
-            }, 10);
-        }
-        
-        // Close profile dropdown if clicking outside
-        if (!isClickInProfile && profileDropdown.classList.contains('active')) {
-            profileDropdown.classList.remove('active');
-            profileToggle.classList.remove('active');
-        }
-    });
-    
-    // 4. SEARCH FUNCTIONALITY
-    let searchTimeout;
-    searchInput.addEventListener('input', function(e) {
-        clearTimeout(searchTimeout);
-        
-        searchTimeout = setTimeout(() => {
-            const searchTerm = e.target.value.trim().toLowerCase();
-            
-            if (searchTerm === '') {
-                showAllMovies();
-                return;
-            }
-            
-            searchMovies(searchTerm);
-        }, 300);
-    });
-    
-    // 5. KEYBOARD SHORTCUTS
-    document.addEventListener('keydown', function(e) {
-        // Close with Escape key
-        if (e.key === 'Escape') {
-            if (searchBox.classList.contains('active')) {
-                searchBox.classList.remove('active');
-                searchInput.value = '';
-                showAllMovies();
-            }
-            if (profileDropdown.classList.contains('active')) {
-                profileDropdown.classList.remove('active');
-                profileToggle.classList.remove('active');
-            }
-        }
-        
-        // Focus search with Ctrl+K or Cmd+K
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            searchBox.classList.add('active');
-            searchInput.focus();
-            // Close profile dropdown if open
-            profileDropdown.classList.remove('active');
-            profileToggle.classList.remove('active');
-        }
-    });
-    
-    // Helper function to search movies
-    function searchMovies(searchTerm) {
-        const movieCards = document.querySelectorAll('.movie-card');
-        let foundResults = false;
-        
-        movieCards.forEach(card => {
-            const title = card.querySelector('.movie-title').textContent.toLowerCase();
-            const desc = card.querySelector('.movie-desc').textContent.toLowerCase();
-            
-            if (title.includes(searchTerm) || desc.includes(searchTerm)) {
-                card.style.display = 'block';
-                foundResults = true;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        // Optional: Show message if no results
-        if (!foundResults) {
-            console.log(`No results found for "${searchTerm}"`);
-        }
-    }
-    
-    // Helper function to show all movies
-    function showAllMovies() {
-        const movieCards = document.querySelectorAll('.movie-card');
-        movieCards.forEach(card => {
-            card.style.display = 'block';
-        });
     }
 });
